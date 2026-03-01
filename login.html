@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M-Market | Log In</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <div class="brand">
+                <a href="index.html" class="logo-link">M-MARKET <span class="logo-subtext">ELECTRONICS</span></a>
+            </div>
+            <a href="index.html" class="back-home">← Back to Store</a>
+        </div>
+    </header>
+
+    <main class="form-container">
+        <form id="login-form" class="auth-form" action="#">
+            <h2>Welcome Back</h2>
+            <p class="form-subtitle">Log in to manage your account</p>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" name="email" id="email" placeholder="name@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="••••••••" required>
+            </div>
+
+            <button type="submit" class="submit-btn" id="login-btn">Log In</button>
+            
+            <p class="auth-footer">
+                Don't have an account? <a href="registration.html">Sign Up</a>
+            </p>
+        </form>
+    </main>
+
+    <script src="javaScript/login.js"></script>
+</body>
+</html>

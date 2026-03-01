@@ -1,0 +1,387 @@
+/* -------------------------------------------------------------------------- */
+/* 1. ADVANCED RESET & BASE
+/* -------------------------------------------------------------------------- */
+* {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #111111;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. HEADER ARCHITECTURE
+/* -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 90px;
+  background-color: #000000;
+  border-top-width: 3px;
+  border-top-style: solid;
+  border-top-color: #f3a81c; /* Matches the top accent line */
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3. BRANDING (STATIC TEXT LOGO)
+/* -------------------------------------------------------------------------- */
+.brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-link {
+  text-decoration-line: none;
+  color: #f3a81c;
+  font-size: 24px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: default; /* Non-interactive as requested */
+  line-height: 1.1;
+}
+
+.logo-subtext {
+  display: block;
+  font-size: 10px;
+  color: #ff4d4d; /* Matches the 'Electronics' accent color */
+  letter-spacing: 4px;
+  margin-top: 2px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 4. NAVIGATION MODULE
+/* -------------------------------------------------------------------------- */
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.nav-list {
+  display: flex;
+  list-style-type: none;
+  column-gap: 30px;
+}
+
+.nav-item.active .nav-link {
+  color: #f3a81c; 
+}
+.nav-item.active::before {
+  content: "";
+  position: absolute;
+  top: -38px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 40px;
+  background-image: radial-gradient(circle, rgba(243, 168, 28, 0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.nav-link {
+  text-decoration-line: none;
+  color: #b0b0b0;
+  font-size: 15px;
+  font-weight: 500;
+  transition-property: color;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.nav-link:hover {
+  color: #f3a81c;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 5. ACTION GROUP (AUTH)
+/* -------------------------------------------------------------------------- */
+.auth-group {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+  margin-left: 40px;
+}
+
+.login-link {
+  color: #f3a81c;
+  text-decoration-line: none;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.signup-btn {
+  display: inline-block;
+  text-decoration-line: none;
+  color: #ffffff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 26px;
+  padding-right: 26px;
+  border-radius: 50px;
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: #f3a81c;
+  font-weight: 600;
+  transition-property: background-color, color;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+
+.signup-btn:hover {
+  background-color: #f3a81c;
+  color: #000000;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 6. HAMBURGER ICON (MORPHER)
+/* -------------------------------------------------------------------------- */
+.menu-btn {
+  display: none; /* Desktop hidden */
+  background-color: transparent;
+  border-style: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 2000;
+}
+
+.hamburger {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background-color: #f3a81c;
+  position: relative;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 2px;
+  background-color: #f3a81c;
+  position: absolute;
+  left: 0;
+  transition-property: transform, top;
+  transition-duration: 0.3s;
+}
+
+.hamburger::before { top: -8px; }
+.hamburger::after { top: 8px; }
+
+/* Active Hamburger Animation (Transforms to X) */
+.menu-btn.is-active .hamburger { background-color: transparent; }
+.menu-btn.is-active .hamburger::before { top: 0; transform: rotate(45deg); }
+.menu-btn.is-active .hamburger::after { top: 0; transform: rotate(-45deg); }
+
+/* -------------------------------------------------------------------------- */
+/* 7. RESPONSIVE BREAKPOINTS
+/* -------------------------------------------------------------------------- */
+@media screen and (max-width: 1024px) {
+  .menu-btn {
+    display: block;
+  }
+
+  .nav-wrapper {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden */
+    width: 280px;
+    height: 100vh;
+    background-color: #0a0a0a;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    row-gap: 40px;
+    transition-property: right;
+    transition-duration: 400ms;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+  }
+
+  .nav-wrapper.is-open {
+    right: 0; /* Slide In */
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 25px;
+  }
+
+  .auth-group {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 0;
+    row-gap: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .site-header { height: 75px; }
+  .logo-link { font-size: 18px; }
+  .logo-subtext { font-size: 8px; letter-spacing: 3px; }
+}
+/* --- Hero Section Styles --- */
+.hero-section {
+    background-color: #f4f9ff; /* Light blue background like the image */
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+.hero-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.hero-badge {
+    color: #ff4d4d;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.hero-content h1 {
+    font-size: 52px;
+    color: #222;
+    line-height: 1.1;
+    margin: 20px 0;
+}
+
+.blue-text {
+    color: #007bff; /* Primary blue accent */
+}
+
+.hero-description {
+    color: #777;
+    font-size: 16px;
+    max-width: 450px;
+    margin-bottom: 35px;
+    line-height: 1.6;
+}
+
+/* --- Action Buttons & Price --- */
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.btn-shop {
+    background-color: #007bff;
+    color: #fff;
+    padding: 18px 40px;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.btn-shop:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+}
+
+.price-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.current-price {
+    font-size: 24px;
+    font-weight: 800;
+    color: #333;
+}
+
+.old-price {
+    font-size: 14px;
+    color: #bbb;
+    text-decoration: line-through;
+}
+
+/* --- Hero Image --- */
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1));
+}
+
+/* -------------------------------------------------------------------------- */
+/* RESPONSIVE DESIGN (Media Queries)
+/* -------------------------------------------------------------------------- */
+
+/* Tablets */
+@media screen and (max-width: 992px) {
+    .hero-content h1 {
+        font-size: 40px;
+    }
+}
+
+/* Mobile Devices */
+@media screen and (max-width: 768px) {
+    .hero-wrapper {
+        flex-direction: column; /* Stack vertically on mobile */
+        text-align: center;
+        padding: 20px;
+    }
+
+    .hero-content {
+        order: 2; /* Move text below the image */
+    }
+
+    .hero-image {
+        order: 1;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-actions {
+        justify-content: center;
+        flex-direction: column;
+    }
+}

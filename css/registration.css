@@ -1,0 +1,172 @@
+/* -------------------------------------------------------------------------- */
+/* 1. GLOBAL RESET & BASE
+/* -------------------------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #111111;
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: #ffffff;
+  line-height: 1.6; /* Improves readability for all text */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. HEADER SECTION (MATCHES YOUR BRAND)
+/* -------------------------------------------------------------------------- */
+.site-header {
+  height: 90px;
+  background-color: #000000;
+  border-top: 3px solid #f3a81c;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  width: 90%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.logo-link {
+  text-decoration: none;
+  color: #f3a81c;
+  font-size: 24px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.logo-subtext {
+  font-size: 10px;
+  color: #ff4d4d;
+  letter-spacing: 2px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3. FORM LAYOUT & TYPOGRAPHY
+/* -------------------------------------------------------------------------- */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 90px);
+  padding: 40px 20px;
+}
+
+.auth-form {
+  background-color: #000000;
+  padding: 45px;
+  border-radius: 12px;
+  border: 1px solid #333333;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+/* Heading Style */
+.auth-form h2 {
+  color: #f3a81c;
+  font-size: 30px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+/* The Subtitle Paragraph you mentioned */
+.form-subtitle {
+  color: #b0b0b0;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 35px;
+  font-weight: 400;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 4. FORM INPUTS & LABELS
+/* -------------------------------------------------------------------------- */
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  display: block;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px 16px;
+  background-color: #1a1a1a;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.form-group input:focus {
+  border-color: #f3a81c;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 5. BUTTONS & FOOTER TEXT
+/* -------------------------------------------------------------------------- */
+.submit-btn {
+  width: 100%;
+  padding: 16px;
+  background-color: #f3a81c;
+  color: #000000;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: opacity 0.3s ease;
+}
+
+.submit-btn:hover {
+  opacity: 0.9;
+}
+
+/* The "Already have an account?" text */
+.auth-footer {
+  text-align: center;
+  margin-top: 25px;
+  color: #b0b0b0;
+  font-size: 14px;
+}
+
+/* The "Log In" link style */
+.auth-footer a {
+  color: #f3a81c;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 5px;
+  transition: text-decoration 0.2s ease;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 6. RESPONSIVE DESIGN
+/* -------------------------------------------------------------------------- */
+@media screen and (max-width: 480px) {
+  .auth-form {
+    padding: 30px 20px;
+  }
+  
+  .auth-form h2 {
+    font-size: 24px;
+  }
+}
