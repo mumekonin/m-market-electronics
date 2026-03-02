@@ -315,24 +315,6 @@ body {
     background-color: #0056b3;
     transform: translateY(-3px);
 }
-
-.price-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.current-price {
-    font-size: 24px;
-    font-weight: 800;
-    color: #333;
-}
-
-.old-price {
-    font-size: 14px;
-    color: #bbb;
-    text-decoration: line-through;
-}
-
 /* --- Hero Image --- */
 .hero-image {
     flex: 1;
@@ -919,4 +901,169 @@ body {
 /* Ensure results grid looks good */
 #category-results-grid {
     min-height: 50px;
+}
+/* Unique wrapper to isolate the section */
+.au-main-wrapper {
+    padding: 80px 0;
+    background-color: #fcfcfc;
+    color: #333;
+}
+
+.au-flex-container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap; /* Supports mobile stacking */
+}
+
+.au-image-column, .au-text-column {
+    flex: 1;
+    min-width: 320px;
+}
+
+/* Image Styling with Frame */
+.au-img-frame {
+    position: relative;
+    padding: 10px;
+}
+
+.au-featured-img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    display: block;
+}
+
+
+
+/* Text Content Styling */
+.au-sub-headline {
+    color: #007bff;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.au-main-headline {
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.au-description {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Feature List */
+.au-feature-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 35px;
+}
+
+.au-list-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.au-check {
+    color: #28a745;
+    font-weight: bold;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+    .au-flex-container {
+        flex-direction: column-reverse; /* Puts text above image on small screens */
+        text-align: center;
+    }
+    .au-list-item {
+        justify-content: center;
+        text-align: left;
+    }
+    .au-main-headline {
+        font-size: 30px;
+    }
+}
+/* --- Simple White Footer --- */
+.sf-wrapper {
+    background-color: #121212; /* Explicitly white */
+    padding: 40px 0;           /* Balanced spacing */
+    width: 100%;
+}
+
+.sf-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Left Group */
+.sf-left {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.sf-logo {
+    font-weight: 900;
+    color: #007bff;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+}
+
+.sf-contact-info {
+    font-size: 15px;
+    color: #666;
+}
+
+.sf-email {
+    color: #fbc3c3;
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 5px;
+}
+
+/* Right Group */
+.sf-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.sf-copy {
+    font-size: 14px;
+    color: #fffafa;
+}
+
+.sf-top-link {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: 700;
+    font-size: 14px;
+    transition: opacity 0.2s;
+}
+
+.sf-top-link:hover {
+    opacity: 0.7;
+}
+
+/* Mobile Media Query */
+@media (max-width: 768px) {
+    .sf-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .sf-left, .sf-right {
+        flex-direction: column;
+        gap: 10px;
+    }
 }

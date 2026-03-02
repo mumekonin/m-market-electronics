@@ -7,7 +7,6 @@
   <title>M-market</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
   <header class="site-header">
     <div class="container">
@@ -21,10 +20,11 @@
       </button>
       <nav class="nav-wrapper" id="nav-wrapper">
         <ul class="nav-list">
-          <li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
-          <li><a href="#" class="nav-link">Our Product</a></li>
-          <li><a href="#" class="nav-link">About</a></li>
-          <li><a href="#" class="nav-link">Contact us</a></li>
+          <li class="nav-item active"><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#product" class="nav-link">Our Product</a></li>
+          <li><a href="#category" class="nav-link">Category</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#contact" class="nav-link">Contact us</a></li>
         </ul>
         <div class="auth-group">
           <a href="login.html" class="login-link">Log In</a>
@@ -33,24 +33,20 @@
       </nav>
     </div>
   </header>
-  <section class="hero-section">
+  <section class="hero-section" id="home">
     <div class="container hero-wrapper">
       <div class="hero-content">
         <span class="hero-badge">FAVORITE BRANDS</span>
         <h1>An exciting place <br> <span class="blue-text">for the whole family to shop.</span></h1>
         <p class="hero-description">
-          The standard chunk of Lorem Ipsum used since the 1500s is
-          reproduced below for those interested. Find the latest tech here.
+          Empowering your digital world since 2024. Discover a curated collection of
+          high-performance electronics and premium accessories.
+          <strong>Find the latest tech here.</strong>
         </p>
         <div class="hero-actions">
-          <a href="shop.html" class="btn-shop">SHOP NOW</a>
-          <div class="price-container">
-            <span class="current-price">$ 249.99</span>
-            <span class="old-price">$ 299.99</span>
-          </div>
+          <a href="#product" class="btn-shop">SHOP NOW</a>
         </div>
       </div>
-
       <div class="hero-image">
         <img
           src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
@@ -58,53 +54,110 @@
       </div>
     </div>
   </section>
-  <section class="is-search-wrapper">
+  <section class="is-search-wrapper" id="product">
     <div class="containerr">
-        <h2 class="is-search-title">FIND YOUR PRODUCT</h2>
-         <p class="display-subtitle">Search by name, description, color, storage or category — instantly across our entire catalog.</p>
-        <div class="is-search-field-group">
-            <input type="text" id="is-query-input" placeholder="Search...">
-            <button id="is-search-action">Search</button>
-        </div>
-        
-        <div id="independent-search-results" class="strict-grid"></div>
-    </div>
-</section>
-<section class="m-market-featured">
-    <div class="containerr">
-        <div class="header-block">
-            <h2 class="display-title">Our Featured Electronics</h2>
-            <p class="display-subtitle">
-                An exciting place for the whole family to shop. Explore our latest
-                collection of high-performance gadgets and home electronics.
-            </p>
-            <div class="blue-accent-line"></div>
-        </div>
-        
-        <div id="product-list-grid" class="strict-grid"></div>
-
-        <div id="modal-overlay" onclick="closeModal()"></div>
-        <div id="detail-modal"></div>
+      <h2 class="is-search-title">FIND YOUR PRODUCT</h2>
+      <p class="display-subtitle">Search by name, description, color, storage or category — instantly across our entire
+        catalog.</p>
+      <div class="is-search-field-group">
+        <input type="text" id="is-query-input" placeholder="Search...">
+        <button id="is-search-action">Search</button>
       </div>
-</section>
-<section class="is-cat-wrapper">
-    <div class="containerr">
-        <div class="is-cat-header">
-            <h2 class="is-cat-main-title">SHOP BY CATEGORY</h2>
-            <p class="is-cat-subtitle">Select a category to view specific products.</p>
-        </div>
-
-        <div class="is-cat-nav-bar">
-            <button class="is-cat-link" onclick="runCategoryFilter('phone')">Smartphones</button>
-            <button class="is-cat-link" onclick="runCategoryFilter('Laptop')">Laptops</button>
-            <button class="is-cat-link" onclick="runCategoryFilter('ipad')">Tablets</button>
-            <button class="is-cat-link" onclick="runCategoryFilter('Watch')">Watches</button>
-            <button class="is-cat-link is-clear" onclick="resetCategorySection()">Clear Results</button>
-        </div>
-
-        <div id="category-results-grid" class="strict-grid"></div>
+      <div id="independent-search-results" class="strict-grid"></div>
     </div>
-</section>
-<script src="javaScript/script.js"></script>
+  </section>
+  <section class="m-market-featured">
+    <div class="containerr">
+      <div class="header-block">
+        <h2 class="display-title">Our Featured Electronics</h2>
+        <p class="display-subtitle">
+          An exciting place for the whole family to shop. Explore our latest
+          collection of high-performance gadgets and home electronics.
+        </p>
+        <div class="blue-accent-line"></div>
+      </div>
+
+      <div id="product-list-grid" class="strict-grid"></div>
+
+      <div id="modal-overlay" onclick="closeModal()"></div>
+      <div id="detail-modal"></div>
+    </div>
+  </section>
+  <section class="is-cat-wrapper" id="category">
+    <div class="containerr">
+      <div class="is-cat-header">
+        <h2 class="is-cat-main-title">SHOP BY CATEGORY</h2>
+        <p class="is-cat-subtitle">Select a category to view specific products.</p>
+      </div>
+
+      <div class="is-cat-nav-bar">
+        <button class="is-cat-link" onclick="runCategoryFilter('phone')">Smartphones</button>
+        <button class="is-cat-link" onclick="runCategoryFilter('Laptop')">Laptops</button>
+        <button class="is-cat-link" onclick="runCategoryFilter('ipad')">Tablets</button>
+        <button class="is-cat-link" onclick="runCategoryFilter('Watch')">Watches</button>
+        <button class="is-cat-link is-clear" onclick="resetCategorySection()">Clear Results</button>
+      </div>
+
+      <div id="category-results-grid" class="strict-grid"></div>
+    </div>
+  </section>
+  <section class="au-main-wrapper" id="about">
+    <div class="containerr">
+      <div class="au-flex-container">
+
+        <div class="au-image-column">
+          <div class="au-img-frame">
+            <img src="https://images.unsplash.com/photo-1491933382434-500287f9b54b?auto=format&fit=crop&q=80&w=800"
+              alt="Electronics Tech" class="au-featured-img">
+          </div>
+        </div>
+
+        <div class="au-text-column">
+          <h4 class="au-sub-headline">WHO WE ARE</h4>
+          <h2 class="au-main-headline">Your Trusted Partner in Modern Electronics</h2>
+          <p class="au-description">
+            At <strong>M-Market Electronics</strong>, we don't just sell gadgets; we provide the tools for your digital
+            success. We bridge the gap between complex technology and everyday convenience.
+          </p>
+
+          <ul class="au-feature-list">
+            <li class="au-list-item">
+              <span class="au-check">✔</span>
+              <div><strong>Quality Assurance:</strong> Every device is 100% certified and tested.</div>
+            </li>
+            <li class="au-list-item">
+              <span class="au-check">✔</span>
+              <div><strong>Global Standards:</strong> We bring world-class innovation to your doorstep.</div>
+            </li>
+            <li class="au-list-item">
+              <span class="au-check">✔</span>
+              <div><strong>Expert Support:</strong> Our tech team is available 24/7 for your needs.</div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <footer class="sf-wrapper" id="contact">
+    <div class="containerr">
+      <div class="sf-content">
+        <div class="sf-left">
+          <span class="sf-logo">M-MARKET</span>
+          <div class="sf-contact-info">
+            <span class="sf-label">Contact us:</span>
+            <a href="mailto:mulxmak@gmail.com" class="sf-email">Mmarket@gmailt.com</a>
+          </div>
+        </div>
+
+        <div class="sf-right">
+          <span class="sf-copy">© 2026 All Rights Reserved</span>
+          <a href="#home" class="sf-top-link" onclick="window.scrollTo({top:0, behavior:'smooth'})">Back to Top ↑</a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+  <script src="javaScript/script.js"></script>
 </body>
 </html>

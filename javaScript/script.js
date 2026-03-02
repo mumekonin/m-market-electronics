@@ -19,9 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 const SERVER_URL = 'http://localhost:3000';
 
-/**
- * 1. BROWSE: Load the Grid
- */
 async function loadMmarketElectronics() {
     const grid = document.getElementById('product-list-grid');
     if (!grid) return;
@@ -41,9 +38,6 @@ async function loadMmarketElectronics() {
     } catch (e) { console.error("Grid Error:", e); }
 }
 
-/**
- * 2. VIEW DETAILS: Open Modal
- */
 async function showProductDetails(targetId) {
     const detailBox = document.getElementById('detail-modal');
     const overlay = document.getElementById('modal-overlay');
@@ -60,10 +54,12 @@ async function showProductDetails(targetId) {
                     <img src="${SERVER_URL}/${cleanPath}" alt="${product.proName}">
                 </div>
                 <div class="modal-info-side">
-                    <span class="spec-badge">${product.category}</span>
-                    <h2 class="detail-title">${product.proName}</h2>
-                    <div class="detail-price">$${product.price}</div>
+                    <span class="spec-badge">Category : ${product.category}</span>
+                    <h2 class="detail-title">Name : ${product.proName}</h2>
+                    <div class="detail-price">Price : $${product.price}</div>
                     <p class="detail-desc">${product.proDescrption}</p>
+                    <p class="detail-desc">color : ${product.color}</p>
+                    <p class="detail-desc">storage : ${product.storage}</p>
                     
                     <div id="initial-order-step">
                         <button class="order-btn" onclick="showOrderForm()" style="width:100%">PLACE ORDER</button>
@@ -84,20 +80,11 @@ async function showProductDetails(targetId) {
         document.body.style.overflow = 'hidden';
     } catch (e) { console.error("Detail Error:", e); }
 }
-
-/**
- * 3. REVEAL: Show Payment Methods
- */
 function showOrderForm() {
     document.getElementById('initial-order-step').style.display = 'none';
     document.getElementById('hidden-payment-methods').style.display = 'block';
 }
-
-/**
- * 4. ORDER: Confirm & Send to NestJS
- */
 async function buyNow(productId) {
-    // FIXED: Must match your login script's key
     const token = localStorage.getItem('userToken'); 
     const fileInput = document.getElementById('order-screenshot');
     const qty = document.getElementById('order-qty').value;
@@ -142,8 +129,6 @@ document.addEventListener('DOMContentLoaded', loadMmarketElectronics);
         const input = document.getElementById('is-query-input');
         const grid = document.getElementById('independent-search-results');
         const key = input.value.trim();
-
-        // FEATURE: If input is omitted/empty, clear results and stop
         if (!key) {
             grid.innerHTML = '';
             return;
@@ -156,7 +141,6 @@ document.addEventListener('DOMContentLoaded', loadMmarketElectronics);
             const data = await response.json();
 
             if (!response.ok) {
-                // Displays "product is not found" from your service
                 grid.innerHTML = `<p style="text-align:center; grid-column:1/-1; color:#856404; background:#fff3cd; padding:20px; border-radius:8px;">${data.message}</p>`;
                 return;
             }
@@ -184,7 +168,6 @@ document.addEventListener('DOMContentLoaded', loadMmarketElectronics);
         if (btn) btn.onclick = executeSearch;
 
         if (input) {
-            // Clear results when the user omits/deletes the value
             input.addEventListener('input', () => {
                 if (input.value.trim() === "") {
                     grid.innerHTML = "";
@@ -208,7 +191,6 @@ document.addEventListener('DOMContentLoaded', loadMmarketElectronics);
         try {
             catGrid.innerHTML = `<p style="text-align:center; grid-column:1/-1;">Loading ${cat}s...</p>`;
             
-            // Hits your search service endpoint with the category name as the key
             const response = await fetch(`${SERVER_URL}/products/search-products?key=${encodeURIComponent(cat)}`);
             const data = await response.json();
 
