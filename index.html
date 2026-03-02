@@ -87,6 +87,24 @@
         <div id="detail-modal"></div>
       </div>
 </section>
+<section class="is-cat-wrapper">
+    <div class="containerr">
+        <div class="is-cat-header">
+            <h2 class="is-cat-main-title">SHOP BY CATEGORY</h2>
+            <p class="is-cat-subtitle">Select a category to view specific products.</p>
+        </div>
+
+        <div class="is-cat-nav-bar">
+            <button class="is-cat-link" onclick="runCategoryFilter('phone')">Smartphones</button>
+            <button class="is-cat-link" onclick="runCategoryFilter('Laptop')">Laptops</button>
+            <button class="is-cat-link" onclick="runCategoryFilter('ipad')">Tablets</button>
+            <button class="is-cat-link" onclick="runCategoryFilter('Watch')">Watches</button>
+            <button class="is-cat-link is-clear" onclick="resetCategorySection()">Clear Results</button>
+        </div>
+
+        <div id="category-results-grid" class="strict-grid"></div>
+    </div>
+</section>
 <script src="javaScript/script.js"></script>
 </body>
 </html>

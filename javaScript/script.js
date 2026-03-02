@@ -197,3 +197,42 @@ document.addEventListener('DOMContentLoaded', loadMmarketElectronics);
         }
     });
 })();
+
+(function() {
+    const SERVER_URL = 'http://localhost:3000';
+
+    window.runCategoryFilter = async function(cat) {
+        const catGrid = document.getElementById('category-results-grid');
+        if (!catGrid) return;
+
+        try {
+            catGrid.innerHTML = `<p style="text-align:center; grid-column:1/-1;">Loading ${cat}s...</p>`;
+            
+            // Hits your search service endpoint with the category name as the key
+            const response = await fetch(`${SERVER_URL}/products/search-products?key=${encodeURIComponent(cat)}`);
+            const data = await response.json();
+
+            if (!response.ok) {
+                catGrid.innerHTML = `<p class="cat-error">${data.message}</p>`; // "product is not found"
+                return;
+            }
+
+            catGrid.innerHTML = data.map(item => `
+                <div class="product-card">
+                    <img src="${SERVER_URL}/${item.imageUrl?.replace(/\\/g, '/')}" alt="${item.proName}">
+                    <p style="font-size:11px; color:#007bff; font-weight:700;">${item.category}</p>
+                    <h3>${item.proName}</h3>
+                    <div class="product-price">$${item.price}</div>
+                    <button class="order-btn" onclick="showProductDetails('${item.id || item._id}')">View Details</button>
+                </div>
+            `).join('');
+
+        } catch (err) {
+            catGrid.innerHTML = '<p style="text-align:center; grid-column:1/-1; color:red;">Connection Failed.</p>';
+        }
+    };
+
+    window.resetCategorySection = function() {
+        document.getElementById('category-results-grid').innerHTML = '';
+    };
+})();
