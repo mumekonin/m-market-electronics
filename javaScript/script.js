@@ -134,3 +134,66 @@ function closeModal() {
 }
 
 document.addEventListener('DOMContentLoaded', loadMmarketElectronics);
+
+(function() {
+    const SERVER = 'http://localhost:3000';
+
+    async function executeSearch() {
+        const input = document.getElementById('is-query-input');
+        const grid = document.getElementById('independent-search-results');
+        const key = input.value.trim();
+
+        // FEATURE: If input is omitted/empty, clear results and stop
+        if (!key) {
+            grid.innerHTML = '';
+            return;
+        }
+
+        try {
+            grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">Searching...</p>';
+            
+            const response = await fetch(`${SERVER}/products/search-products?key=${encodeURIComponent(key)}`);
+            const data = await response.json();
+
+            if (!response.ok) {
+                // Displays "product is not found" from your service
+                grid.innerHTML = `<p style="text-align:center; grid-column:1/-1; color:#856404; background:#fff3cd; padding:20px; border-radius:8px;">${data.message}</p>`;
+                return;
+            }
+
+            grid.innerHTML = data.map(item => `
+                <div class="product-card">
+                    <img src="${SERVER}/${item.imageUrl?.replace(/\\/g, '/')}" alt="${item.proName}">
+                    <p style="font-size:11px; color:#007bff; font-weight:bold;">RESULT</p>
+                    <h3>${item.proName}</h3>
+                    <div class="product-price">$${item.price}</div>
+                    <button class="order-btn" onclick="showProductDetails('${item.id || item._id}')">View Details</button>
+                </div>
+            `).join('');
+
+        } catch (err) {
+            grid.innerHTML = '<p style="text-align:center; grid-column:1/-1; color:red;">Connection Error.</p>';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const input = document.getElementById('is-query-input');
+        const btn = document.getElementById('is-search-action');
+        const grid = document.getElementById('independent-search-results');
+
+        if (btn) btn.onclick = executeSearch;
+
+        if (input) {
+            // Clear results when the user omits/deletes the value
+            input.addEventListener('input', () => {
+                if (input.value.trim() === "") {
+                    grid.innerHTML = "";
+                }
+            });
+
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') executeSearch();
+            });
+        }
+    });
+})();
