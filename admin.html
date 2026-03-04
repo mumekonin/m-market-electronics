@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>M-Market | Admin Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+
+<body>
+
+  <!--MOBILE TOPBAR-->
+  <div class="mobile-topbar" id="mobileTopbar">
+    <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleSidebar()">
+      <span></span><span></span><span></span>
+    </button>
+    <span class="mobile-topbar-title">M-Market Admin</span>
+    <a href="index.html" class="mobile-store-link">Store ↗</a>
+  </div>
+
+  <!--SIDEBAR OVERLAY (mobile)-->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <div class="layout">
+
+    <!--  SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">M</div>
+        <div>
+          <div class="logo-title">M-Market</div>
+          <div class="logo-sub">Admin Panel · v1.0</div>
+        </div>
+      </div>
+
+      <div class="nav-section-label">Products</div>
+      <nav>
+        <a class="nav-item active" href="#" onclick="return showPage('products', this)">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M3 9h18M9 21V9" />
+          </svg>
+          All Products
+        </a>
+        <a class="nav-item" href="#" onclick="return showPage('upload', this)">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" />
+          </svg>
+          Upload Product
+        </a>
+        <a class="nav-item" href="#" onclick="return showPage('update', this)">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+            <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+          </svg>
+          Update Product
+        </a>
+        <a class="nav-item" href="#" onclick="return showPage('delete', this)">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <polyline points="3 6 5 6 21 6" />
+            <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6M10 11v6M14 11v6M9 6V4h6v2" />
+          </svg>
+          Delete Product
+        </a>
+      </nav>
+
+      <div class="nav-section-label" style="margin-top:16px">Orders</div>
+      <nav>
+        <a class="nav-item" href="#" onclick="return showPage('orders', this)">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path
+              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+          All Orders
+        </a>
+        <a class="nav-item" href="#" onclick="return showPage('updateOrder', this)">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+          Update Order Status
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="admin-dot"></div>
+        <span>Admin · JWT Auth</span>
+        <a href="index.html" class="store-link">← Store</a>
+      </div>
+    </aside>
+
+    <!--  MAIN -->
+    <main class="main">
+      <!-- PAGE: ALL PRODUCTS -->
+      <div id="page-products" class="page active">
+        <div class="page-header">
+          <div>
+            <h1>All Products</h1>
+            <p class="page-sub"><span class="badge badge-get">GET</span> /products/get-all-products</p>
+          </div>
+          <button class="btn btn-primary" onclick="loadProducts()">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <polyline points="23 4 23 10 17 10" />
+              <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10" />
+            </svg>
+            Refresh
+          </button>
+        </div>
+
+        <div class="stats-bar" id="statsBar" style="display:none">
+          <div class="stat-item"><span class="stat-value" id="statTotal">0</span><span class="stat-label">Total
+              Products</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat-item"><span class="stat-value" id="statCategories">0</span><span
+              class="stat-label">Categories</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat-item"><span class="stat-value" id="statStock">0</span><span class="stat-label">Total
+              Stock</span></div>
+        </div>
+
+        <div class="search-bar" id="searchBarWrap" style="display:none">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input type="text" id="searchInput" placeholder="Search by name or category…" oninput="filterProducts()">
+        </div>
+
+        <div id="productsStatus" class="status-msg"></div>
+
+        <div class="table-wrap" id="tableWrap" style="display:none">
+          <table>
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Product ID</th>
+              </tr>
+            </thead>
+            <tbody id="productsTableBody"></tbody>
+          </table>
+        </div>
+
+        <div class="empty-state" id="emptyState" style="display:none">
+          <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M3 9h18M9 21V9" />
+          </svg>
+          <p>No products found</p>
+          <small>Upload your first product to get started</small>
+        </div>
+      </div>
+      <!-- PAGE: UPLOAD PRODUCT                             -->
+      <div id="page-upload" class="page">
+        <div class="page-header">
+          <div>
+            <h1>Upload Product</h1>
+            <p class="page-sub"><span class="badge badge-post">POST</span> /products/upload</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="form-row two">
+            <div class="form-group">
+              <label>Product Name <span class="req">*</span></label>
+              <input type="text" id="proName" placeholder="e.g. iPhone 15 Pro">
+            </div>
+            <div class="form-group">
+              <label>Category <span class="req">*</span></label>
+              <select id="category">
+                <option value="" disabled selected>Select category…</option>
+                <option value="phone">Phone</option>
+                <option value="laptop">Laptop</option>
+                <option value="ipad">iPad / Tablet</option>
+                <option value="watch">Watch</option>
+                <option value="airpod">AirPods</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Description <span class="req">*</span></label>
+            <textarea id="proDescrption" placeholder="Describe the product…"></textarea>
+          </div>
+
+          <div class="form-row four">
+            <div class="form-group">
+              <label>Price (USD) <span class="req">*</span></label>
+              <input type="number" id="price" placeholder="0.00" step="0.01" min="0">
+            </div>
+            <div class="form-group">
+              <label>Stock <span class="req">*</span></label>
+              <input type="number" id="stock" placeholder="0" min="0">
+            </div>
+            <div class="form-group">
+              <label>Color</label>
+              <input type="text" id="color" placeholder="Black, White…">
+            </div>
+            <div class="form-group">
+              <label>Storage</label>
+              <input type="text" id="storage" placeholder="128GB, 256GB…">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Product Image <span class="req">*</span></label>
+            <div class="upload-zone" id="uploadZone" onclick="document.getElementById('imageFile').click()">
+              <input type="file" id="imageFile" accept="image/*" style="display:none">
+              <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" />
+              </svg>
+              <p>Click to upload or drag & drop</p>
+              <small>PNG, JPG, WEBP — max 10MB</small>
+            </div>
+            <div class="file-preview" id="filePreview">
+              <img id="previewImg" src="" alt="">
+              <div class="file-meta">
+                <p id="fileName"></p>
+                <small id="fileSize"></small>
+              </div>
+              <button type="button" class="btn-link danger" onclick="removeFile()">Remove</button>
+            </div>
+          </div>
+
+          <!-- SUCCESS/ERROR MESSAGE -->
+          <div id="uploadStatus" class="status-msg"></div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-ghost" onclick="resetUpload()">Clear</button>
+            <button type="button" class="btn btn-primary" id="uploadBtn" onclick="submitUpload()">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" />
+              </svg>
+              Upload Product
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE: UPDATE PRODUCT                             -->
+      <div id="page-update" class="page">
+        <div class="page-header">
+          <div>
+            <h1>Update Product</h1>
+            <p class="page-sub"><span class="badge badge-patch">PATCH</span> /products/update/:id</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="form-group">
+            <label>Product ID <span class="req">*</span></label>
+            <div class="input-with-btn">
+              <input type="text" id="updateId" placeholder="Paste MongoDB ObjectId…">
+              <button type="button" class="btn btn-ghost" onclick="pasteUpdateId()">Paste</button>
+            </div>
+            <small class="hint">Tip: Copy the ID from the
+              <a href="#" onclick="return showPage('products', document.querySelectorAll('.nav-item')[0])">All
+                Products</a> page
+            </small>
+          </div>
+
+          <div class="section-divider"><span>Fields to update — leave blank to keep existing value</span></div>
+
+          <div class="form-row two">
+            <div class="form-group">
+              <label>Product Name</label>
+              <input type="text" id="upd_proName" placeholder="Leave blank to keep current">
+            </div>
+            <div class="form-group">
+              <label>Category</label>
+              <select id="upd_category">
+                <option value="">— Keep current —</option>
+                <option value="phone">Phone</option>
+                <option value="laptop">Laptop</option>
+                <option value="ipad">iPad / Tablet</option>
+                <option value="watch">Watch</option>
+                <option value="airpod">AirPods</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="upd_proDescrption" placeholder="Leave blank to keep current"></textarea>
+          </div>
+
+          <div class="form-row four">
+            <div class="form-group">
+              <label>Price (USD)</label>
+              <input type="number" id="upd_price" placeholder="e.g. 999.00" step="0.01" min="0">
+            </div>
+            <div class="form-group">
+              <label>Stock</label>
+              <input type="number" id="upd_stock" placeholder="e.g. 50" min="0">
+            </div>
+            <div class="form-group">
+              <label>Color</label>
+              <input type="text" id="upd_color" placeholder="e.g. Black">
+            </div>
+            <div class="form-group">
+              <label>Storage</label>
+              <input type="text" id="upd_storage" placeholder="e.g. 256GB">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Replace Image <span class="optional">(optional)</span></label>
+            <div class="upload-zone" id="updUploadZone" onclick="document.getElementById('updImageFile').click()">
+              <input type="file" id="updImageFile" accept="image/*" style="display:none">
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" />
+              </svg>
+              <p>Click to upload new image</p>
+              <small>Leave empty to keep the existing image</small>
+            </div>
+            <div class="file-preview" id="updFilePreview">
+              <img id="updPreviewImg" src="" alt="">
+              <div class="file-meta">
+                <p id="updFileName"></p>
+                <small id="updFileSize"></small>
+              </div>
+              <button type="button" class="btn-link danger" onclick="removeUpdateFile()">Remove</button>
+            </div>
+          </div>
+
+          <!--SUCCESS/ERROR MESSAGE -->
+          <div id="updateStatus" class="status-msg"></div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-ghost" onclick="resetUpdate()">Clear</button>
+            <button type="button" class="btn btn-warning" id="updateBtn" onclick="submitUpdate()">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+              </svg>
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- PAGE: DELETE PRODUCT                             -->
+      <div id="page-delete" class="page">
+        <div class="page-header">
+          <div>
+            <h1>Delete Product</h1>
+            <p class="page-sub"><span class="badge badge-delete">DELETE</span> /products/delete/:id</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="form-group">
+            <label>Product ID <span class="req">*</span></label>
+            <div class="input-with-btn">
+              <input type="text" id="deleteId" placeholder="Paste MongoDB ObjectId here…">
+              <button type="button" class="btn btn-ghost" onclick="pasteFromClipboard()">Paste</button>
+            </div>
+            <small class="hint">Tip: Copy the ID from the
+              <a href="#" onclick="return showPage('products', document.querySelector('.nav-item'))">All Products</a>
+              page
+            </small>
+          </div>
+
+          <div class="alert alert-warning">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
+            This action is <strong>permanent</strong>. The product record and its image file will be deleted from
+            storage.
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-danger" onclick="openConfirm()">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <polyline points="3 6 5 6 21 6" />
+                <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6" />
+              </svg>
+              Delete Product
+            </button>
+          </div>
+          <div id="deleteStatus" class="status-msg"></div>
+        </div>
+      </div>
+      <!-- PAGE: ALL ORDERS                                 -->
+      <div id="page-orders" class="page">
+        <div class="page-header">
+          <div>
+            <h1>All Orders</h1>
+            <p class="page-sub"><span class="badge badge-get">GET</span> /orders/allOrders</p>
+          </div>
+          <button class="btn btn-primary" onclick="loadOrders()">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <polyline points="23 4 23 10 17 10" />
+              <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10" />
+            </svg>
+            Refresh
+          </button>
+        </div>
+
+        <div class="stats-bar" id="ordersStatsBar" style="display:none">
+          <div class="stat-item"><span class="stat-value" id="oStatTotal">0</span><span class="stat-label">Total
+              Orders</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat-item"><span class="stat-value" id="oStatPending">0</span><span
+              class="stat-label">Pending</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat-item"><span class="stat-value" id="oStatCompleted">0</span><span
+              class="stat-label">Completed</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat-item"><span class="stat-value" id="oStatRevenue">$0</span><span class="stat-label">Total
+              Revenue</span></div>
+        </div>
+
+        <div class="search-bar" id="ordersSearchWrap" style="display:none">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input type="text" id="ordersSearchInput" placeholder="Search by customer name, email or product…"
+            oninput="filterOrders()">
+        </div>
+
+        <div id="ordersStatus" class="status-msg"></div>
+
+        <div class="table-wrap" id="ordersTableWrap" style="display:none">
+          <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody"></tbody>
+          </table>
+        </div>
+
+        <div class="empty-state" id="ordersEmptyState" style="display:none">
+          <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path
+              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+          <p>No orders found</p>
+          <small>Orders will appear here once customers place them</small>
+        </div>
+      </div>
+      <!-- PAGE: UPDATE ORDER STATUS                        -->
+      <div id="page-updateOrder" class="page">
+        <div class="page-header">
+          <div>
+            <h1>Update Order Status</h1>
+            <p class="page-sub"><span class="badge badge-patch">PATCH</span> /orders/:id</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="form-group">
+            <label>Order ID <span class="req">*</span></label>
+            <div class="input-with-btn">
+              <input type="text" id="orderStatusId" placeholder="Paste MongoDB ObjectId…">
+              <button type="button" class="btn btn-ghost" onclick="pasteOrderId()">Paste</button>
+            </div>
+            <small class="hint">Find the Order ID on the
+              <a href="#" onclick="return showPage('orders', document.querySelectorAll('.nav-item')[4])">All Orders</a>
+              page
+            </small>
+          </div>
+
+          <div class="section-divider"><span>Select new status</span></div>
+
+          <div class="status-picker" id="statusPicker">
+            <label class="status-card">
+              <input type="radio" name="orderStatus" value="pending" style="display:none">
+              <div class="status-card-dot pending-dot"></div>
+              <div class="status-card-body">
+                <span class="status-card-label">Pending</span>
+                <span class="status-card-desc">Order received, awaiting payment</span>
+              </div>
+              <svg class="status-card-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
+                viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </label>
+
+            <label class="status-card">
+              <input type="radio" name="orderStatus" value="paid" style="display:none">
+              <div class="status-card-dot paid-dot"></div>
+              <div class="status-card-body">
+                <span class="status-card-label">Paid</span>
+                <span class="status-card-desc">Payment confirmed, preparing order</span>
+              </div>
+              <svg class="status-card-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
+                viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </label>
+
+            <label class="status-card">
+              <input type="radio" name="orderStatus" value="shipped" style="display:none">
+              <div class="status-card-dot shipped-dot"></div>
+              <div class="status-card-body">
+                <span class="status-card-label">Shipped</span>
+                <span class="status-card-desc">Order dispatched and on the way</span>
+              </div>
+              <svg class="status-card-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
+                viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </label>
+
+            <label class="status-card">
+              <input type="radio" name="orderStatus" value="cancelled" style="display:none">
+              <div class="status-card-dot cancelled-dot"></div>
+              <div class="status-card-body">
+                <span class="status-card-label">Cancelled</span>
+                <span class="status-card-desc">Order has been cancelled</span>
+              </div>
+              <svg class="status-card-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
+                viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </label>
+          </div>
+
+          <!-- SUCCESS/ERROR MESSAGE -->
+          <div id="orderStatusMsg" class="status-msg"></div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-ghost" onclick="resetOrderStatus()">Clear</button>
+            <button type="button" class="btn btn-warning" id="orderStatusBtn" onclick="submitOrderStatus()">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              Update Status
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ── CONFIRM MODAL ── -->
+  <div class="modal-overlay" id="confirmModal">
+    <div class="modal">
+      <div class="modal-icon-wrap danger">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <polyline points="3 6 5 6 21 6" />
+          <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6M10 11v6M14 11v6M9 6V4h6v2" />
+        </svg>
+      </div>
+      <h3>Confirm Deletion</h3>
+      <p>Are you sure you want to delete product:</p>
+      <div class="modal-id-box" id="confirmIdText"></div>
+      <p class="modal-warn">This cannot be undone.</p>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-danger" onclick="confirmDelete()">Yes, Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TOAST ── -->
+  <div class="toast" id="toast"></div>
+
+  <script src="javaScript/admin.js"></script>
+</body>
+
+</html>

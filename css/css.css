@@ -1,6 +1,4 @@
-/* ==========================================================================
-   1. RESET & BASE
-   ========================================================================== */
+/* RESET & BASE */
 * {
   margin: 0;
   padding: 0;
@@ -17,7 +15,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
   height: 6px;
   width: 6px;
@@ -31,10 +28,7 @@ html {
 ::-webkit-scrollbar-track {
   background: #222;
 }
-
-/* ==========================================================================
-   2. HEADER
-   ========================================================================== */
+/* HEADER */
 .site-header {
   position: sticky;
   top: 0;
@@ -54,10 +48,7 @@ html {
   max-width: 1440px;
   margin: 0 auto;
 }
-
-/* ==========================================================================
-   3. BRANDING
-   ========================================================================== */
+/* BRANDING */
 .brand {
   display: flex;
   flex-direction: column;
@@ -69,7 +60,7 @@ html {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
-  cursor: default;
+  text-decoration: none;
   line-height: 1.1;
 }
 
@@ -82,10 +73,7 @@ html {
   font-weight: 700;
   text-transform: uppercase;
 }
-
-/* ==========================================================================
-   4. NAVIGATION
-   ========================================================================== */
+/* NAVIGATION */
 .nav-wrapper {
   display: flex;
   align-items: center;
@@ -108,10 +96,7 @@ html {
 .nav-link:hover {
   color: #f3a81c;
 }
-
-/* ==========================================================================
-   5. AUTH GROUP (Login/Signup OR Profile/Orders)
-   ========================================================================== */
+/* AUTH GROUP */
 .auth-group {
   display: flex;
   align-items: center;
@@ -142,22 +127,6 @@ html {
   color: #000000;
 }
 
-/* My Orders link */
-.orders-link {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #f3a81c;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 15px;
-  transition: opacity 0.2s;
-}
-
-.orders-link:hover {
-  opacity: 0.8;
-}
-
 /* Profile dropdown */
 .profile-wrapper {
   position: relative;
@@ -186,23 +155,45 @@ html {
 .profile-dropdown {
   position: absolute;
   right: 0;
-  top: 100%;
-  margin-top: 8px;
-  width: 180px;
+  top: calc(100% + 10px);
+  width: 190px;
   background: #0a0a0a;
   border: 1px solid #222;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  animation: slideDown 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  animation: slideDown 0.25s ease;
 }
 
+/* My Orders inside dropdown */
+.dropdown-orders-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 13px 16px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #1e1e1e;
+  color: #f3a81c;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+
+.dropdown-orders-link:hover {
+  background: #1a1a1a;
+}
+
+/* Logout inside dropdown */
 .logout-btn {
   display: flex;
   align-items: center;
   gap: 10px;
   width: 100%;
-  padding: 12px 16px;
+  padding: 13px 16px;
   background: none;
   border: none;
   color: #ff4d4d;
@@ -215,10 +206,7 @@ html {
 .logout-btn:hover {
   background: #1a1a1a;
 }
-
-/* ==========================================================================
-   6. HAMBURGER
-   ========================================================================== */
+/* HAMBURGER */
 .menu-btn {
   display: none;
   background: transparent;
@@ -270,10 +258,7 @@ html {
   top: 0;
   transform: rotate(-45deg);
 }
-
-/* ==========================================================================
-   7. HERO SECTION
-   ========================================================================== */
+ /* HERO SECTION */
 .hero-section {
   background-color: #f4f9ff;
   padding: 100px 0;
@@ -351,10 +336,7 @@ html {
   height: auto;
   filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.1));
 }
-
-/* ==========================================================================
-   8. FUTURE PRODUCTS
-   ========================================================================== */
+/* FUTURE PRODUCTS */
 .fp-wrapper {
   padding: 80px 0;
   background-color: #fcfcfc;
@@ -457,10 +439,7 @@ html {
   color: #007bff;
   font-size: 15px;
 }
-
-/* ==========================================================================
-   9. SEARCH SECTION
-   ========================================================================== */
+/* SEARCH SECTION */
 .is-search-wrapper {
   width: 100%;
   padding: 60px 0;
@@ -514,10 +493,7 @@ html {
   background: #0056b3;
   transform: translateY(-1px);
 }
-
-/* ==========================================================================
-   10. FEATURED PRODUCTS GRID
-   ========================================================================== */
+/* FEATURED PRODUCTS GRID */
 .m-market-featured {
   padding: 80px 0;
   background-color: #f8f9fa;
@@ -558,10 +534,7 @@ html {
   gap: 30px;
   width: 100%;
 }
-
-/* ==========================================================================
-   11. PRODUCT CARD
-   ========================================================================== */
+/* PRODUCT CARD */
 .product-card {
   background: #ffffff;
   border: 1px solid #edf2f7;
@@ -614,10 +587,7 @@ html {
 .order-btn:hover {
   background-color: #0056b3;
 }
-
-/* ==========================================================================
-   12. MODAL
-   ========================================================================== */
+/* MODAL */
 #modal-overlay {
   display: none;
   position: fixed;
@@ -739,7 +709,6 @@ html {
   padding-bottom: 20px;
 }
 
-/* Order form inside modal */
 #initial-order-step .order-btn {
   width: 100%;
   padding: 15px;
@@ -830,10 +799,7 @@ html {
   background: linear-gradient(135deg, #16a34a, #15803d);
   transform: translateY(-2px);
 }
-
-/* ==========================================================================
-   13. CATEGORY SECTION
-   ========================================================================== */
+/* CATEGORY SECTION */
 .is-cat-wrapper {
   padding: 60px 0;
   background: #fbfbfb;
@@ -882,10 +848,7 @@ html {
   color: #d9534f;
   border-color: #f5c6cb;
 }
-
-/* ==========================================================================
-   14. ABOUT SECTION
-   ========================================================================== */
+/* ABOUT SECTION */
 .au-main-wrapper {
   padding: 80px 0;
   background-color: #fcfcfc;
@@ -954,10 +917,7 @@ html {
   color: #28a745;
   font-weight: bold;
 }
-
-/* ==========================================================================
-   15. FOOTER
-   ========================================================================== */
+/* FOOTER */
 .sf-wrapper {
   background-color: #121212;
   padding: 40px 0;
@@ -1019,10 +979,7 @@ html {
 .sf-top-link:hover {
   opacity: 0.7;
 }
-
-/* ==========================================================================
-   16. LOGIN PAGE
-   ========================================================================== */
+  /* LOGIN PAGE */
 .login-page {
   min-height: 100vh;
   background: #111;

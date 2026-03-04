@@ -1,45 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M-Market | Log In</title>
-    <link rel="stylesheet" href="css/login.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M-Market | Log In</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-
-    <header class="site-header">
-        <div class="container">
-            <div class="brand">
-                <a href="index.html" class="logo-link">M-MARKET <span class="logo-subtext">ELECTRONICS</span></a>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">
+        <a href="index.html" class="logo-link">M-MARKET</a>
+        <span class="logo-subtext">ELECTRONICS</span>
+      </div>
+      <a href="index.html" class="back-home">← Back to Store</a>
+    </div>
+  </header>
+  < <div class="page-wrapper">
+    <!-- LEFT — dark brand side -->
+    <div class="brand-panel">
+      <div class="brand-panel-logo">M-MARKET</div>
+      <div class="brand-panel-sub">Electronics</div>
+      <h2 class="brand-panel-tagline">
+        Your <span>trusted</span> destination for premium tech
+      </h2>
+      <p class="brand-panel-desc">
+        Log in to track your orders, manage your profile, and shop the latest electronics.
+      </p>
+      <div class="brand-panel-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <!-- RIGHT — white form side -->
+    <div class="form-panel">
+      <div class="form-inner">
+        <p class="form-eyebrow">Welcome back</p>
+        <h1 class="form-title">Log In</h1>
+        <p class="form-subtitle">Enter your credentials to access your account</p>
+        <div class="form-divider"></div>
+        <form id="login-form" action="#">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <div class="input-wrap">
+              <span class="input-icon">✉</span>
+              <input type="email" name="email" id="email" placeholder="name@example.com" required autocomplete="email">
             </div>
-            <a href="index.html" class="back-home">← Back to Store</a>
-        </div>
-    </header>
-
-    <main class="form-container">
-        <form id="login-form" class="auth-form" action="#">
-            <h2>Welcome Back</h2>
-            <p class="form-subtitle">Log in to manage your account</p>
-
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" name="email" id="email" placeholder="name@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">🔒</span>
+              <input type="password" name="password" id="password" placeholder="••••••••" required
+                autocomplete="current-password">
             </div>
-
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="••••••••" required>
-            </div>
-
-            <button type="submit" class="submit-btn" id="login-btn">Log In</button>
-            
-            <p class="auth-footer">
-                Don't have an account? <a href="registration.html">Sign Up</a>
-            </p>
+          </div>
+          <button type="submit" class="submit-btn" id="login-btn">Log In</button>
+          <p class="auth-footer">
+            Don't have an account? <a href="registration.html">Sign Up</a>
+          </p>
         </form>
-    </main>
-
+      </div>
+    </div>
+    </div>
     <script src="javaScript/login.js"></script>
 </body>
 </html>

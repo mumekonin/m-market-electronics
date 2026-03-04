@@ -1,32 +1,32 @@
 const SERVER_URL = 'http://localhost:3000';
-
-/* ==========================================================================
-   1. HEADER AUTH — Shows Profile/Orders when logged in, Login/Signup when not
-   ========================================================================== */
 function renderAuthGroup() {
   const authGroup = document.getElementById('auth-group');
   const token = localStorage.getItem('userToken');
 
   if (token) {
-    // LOGGED IN: Show My Orders + Profile dropdown
     authGroup.innerHTML = `
-      <a href="${SERVER_URL}/myOrders" class="orders-link">
-        My Orders
-      </a>
       <div class="profile-wrapper">
         <button class="profile-btn" id="profile-toggle-btn">
           👤 Profile
         </button>
         <div class="profile-dropdown" id="profile-dropdown" style="display:none;">
+          <a href="myOrder.html" class="dropdown-orders-link">📦 My Orders</a>
           <button class="logout-btn" id="logout-btn">🚪 Log Out</button>
         </div>
       </div>
     `;
 
-    // Profile dropdown toggle
-    document.getElementById('profile-toggle-btn').addEventListener('click', () => {
+    // Toggle dropdown
+    document.getElementById('profile-toggle-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
       const dropdown = document.getElementById('profile-dropdown');
       dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', () => {
+      const dropdown = document.getElementById('profile-dropdown');
+      if (dropdown) dropdown.style.display = 'none';
     });
 
     // Logout
@@ -34,22 +34,22 @@ function renderAuthGroup() {
       localStorage.removeItem('userToken');
       window.location.reload();
     });
+
   } else {
-    // NOT LOGGED IN: Show Login + Sign Up
     authGroup.innerHTML = `
       <a href="login.html" class="login-link">Log In</a>
-      <a href="signup.html" class="signup-btn">Sign Up</a>
+      <a href="registration.html" class="signup-btn">Sign Up</a>
     `;
   }
 }
 
-/* ==========================================================================
-   2. HAMBURGER MENU
-   ========================================================================== */
+
+    // HAMBURGER MENU
+
 document.addEventListener('DOMContentLoaded', () => {
   renderAuthGroup();
 
-  const menuBtn = document.getElementById('menu-btn');
+  const menuBtn   = document.getElementById('menu-btn');
   const navWrapper = document.getElementById('nav-wrapper');
 
   const toggleMenu = () => {
@@ -67,10 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
-
-/* ==========================================================================
-   3. FEATURED PRODUCTS GRID
-   ========================================================================== */
+  // FEATURED PRODUCTS GRID
 async function loadMmarketElectronics() {
   const grid = document.getElementById('product-list-grid');
   if (!grid) return;
@@ -88,22 +85,20 @@ async function loadMmarketElectronics() {
       </div>
     `).join('');
   } catch (e) {
-    console.error("Grid Error:", e);
+    console.error('Grid Error:', e);
   }
 }
 
 document.addEventListener('DOMContentLoaded', loadMmarketElectronics);
 
-/* ==========================================================================
-   4. PRODUCT DETAIL MODAL
-   ========================================================================== */
+//  4. PRODUCT DETAIL MODAL
 async function showProductDetails(targetId) {
   const detailBox = document.getElementById('detail-modal');
-  const overlay = document.getElementById('modal-overlay');
+  const overlay   = document.getElementById('modal-overlay');
 
   try {
     const response = await fetch(`${SERVER_URL}/products/get-product-detail/${targetId}`);
-    const product = await response.json();
+    const product  = await response.json();
     const cleanPath = product.imageUrl?.replace(/\\/g, '/');
 
     detailBox.innerHTML = `
@@ -113,45 +108,46 @@ async function showProductDetails(targetId) {
           <img src="${SERVER_URL}/${cleanPath}" alt="${product.proName}">
         </div>
         <div class="modal-info-side">
-          <span class="spec-badge">Category : ${product.category}</span>
-          <h2 class="detail-title">Name : ${product.proName}</h2>
-          <div class="detail-price">Price : $${product.price}</div>
+          <span class="spec-badge">Category: ${product.category}</span>
+          <h2 class="detail-title">${product.proName}</h2>
+          <div class="detail-price">$${product.price}</div>
           <p class="detail-desc">${product.proDescrption}</p>
-          <p class="detail-desc">color : ${product.color}</p>
-          <p class="detail-desc">storage : ${product.storage}</p>
+          <p class="detail-desc">Color: ${product.color}</p>
+          <p class="detail-desc">Storage: ${product.storage}</p>
           <div id="initial-order-step">
             <button class="order-btn" onclick="showOrderForm()" style="width:100%">PLACE ORDER</button>
           </div>
-          <div id="hidden-payment-methods" style="display:none; margin-top:20px; border-top:1px solid #eee; padding-top:15px;">
+          <div id="hidden-payment-methods">
             <label>Quantity:</label>
             <input type="number" id="order-qty" value="1" min="1">
             <label>Payment Screenshot:</label>
             <input type="file" id="order-screenshot" accept="image/*">
-            <button class="order-btn" onclick="buyNow('${product._id || product.id}')" style="width:100%; background:#28a745;">CONFIRM & PAY</button>
+            <button class="order-btn" onclick="buyNow('${product._id || product.id}')" style="width:100%">CONFIRM & PAY</button>
           </div>
         </div>
       </div>
     `;
+
     detailBox.style.display = 'block';
-    overlay.style.display = 'block';
+    overlay.style.display   = 'block';
     document.body.style.overflow = 'hidden';
   } catch (e) {
-    console.error("Detail Error:", e);
+    console.error('Detail Error:', e);
   }
 }
 
 function showOrderForm() {
-  document.getElementById('initial-order-step').style.display = 'none';
+  document.getElementById('initial-order-step').style.display  = 'none';
   document.getElementById('hidden-payment-methods').style.display = 'block';
 }
 
 async function buyNow(productId) {
-  const token = localStorage.getItem('userToken');
+  const token     = localStorage.getItem('userToken');
   const fileInput = document.getElementById('order-screenshot');
-  const qty = document.getElementById('order-qty').value;
+  const qty       = document.getElementById('order-qty').value;
 
-  if (!token) return alert("Please login first!");
-  if (!fileInput.files[0]) return alert("Screenshot required!");
+  if (!token)            return alert('Please login first!');
+  if (!fileInput.files[0]) return alert('Screenshot required!');
 
   const formData = new FormData();
   formData.append('productId', productId);
@@ -166,14 +162,14 @@ async function buyNow(productId) {
     });
 
     if (response.ok) {
-      alert("Order placed successfully!");
+      alert('Order placed successfully!');
       closeModal();
     } else {
       const err = await response.json();
-      alert("Error: " + err.message);
+      alert('Error: ' + err.message);
     }
   } catch (e) {
-    console.error("Order Error:", e);
+    console.error('Order Error:', e);
   }
 }
 
@@ -183,14 +179,12 @@ function closeModal() {
   document.body.style.overflow = 'auto';
 }
 
-/* ==========================================================================
-   5. SEARCH
-   ========================================================================== */
-(function() {
+  // SEARCH
+(function () {
   async function executeSearch() {
     const input = document.getElementById('is-query-input');
-    const grid = document.getElementById('independent-search-results');
-    const key = input.value.trim();
+    const grid  = document.getElementById('independent-search-results');
+    const key   = input.value.trim();
     if (!key) { grid.innerHTML = ''; return; }
 
     try {
@@ -219,20 +213,20 @@ function closeModal() {
 
   document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('is-query-input');
-    const btn = document.getElementById('is-search-action');
+    const btn   = document.getElementById('is-search-action');
 
     if (btn) btn.onclick = executeSearch;
     if (input) {
-      input.addEventListener('input', () => { if (input.value.trim() === "") document.getElementById('independent-search-results').innerHTML = ""; });
+      input.addEventListener('input', () => {
+        if (input.value.trim() === '') document.getElementById('independent-search-results').innerHTML = '';
+      });
       input.addEventListener('keypress', (e) => { if (e.key === 'Enter') executeSearch(); });
     }
   });
 })();
 
-/* ==========================================================================
-   6. CATEGORY FILTER
-   ========================================================================== */
-window.runCategoryFilter = async function(cat) {
+// CATEGORY FILTER
+window.runCategoryFilter = async function (cat) {
   const catGrid = document.getElementById('category-results-grid');
   if (!catGrid) return;
 
@@ -260,6 +254,6 @@ window.runCategoryFilter = async function(cat) {
   }
 };
 
-window.resetCategorySection = function() {
+window.resetCategorySection = function () {
   document.getElementById('category-results-grid').innerHTML = '';
 };

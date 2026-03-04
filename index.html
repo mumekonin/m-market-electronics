@@ -1,191 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M-MARKET Electronics</title>
-    <link rel="stylesheet" href="css/css.css">
-    <link href="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" rel="stylesheet">
-</head>
-<body>
-    <!-- HEADER -->
-    <header class="site-header">
-      <div class="container">
-        <div class="brand">
-          <span class="logo-link">M-MARKET</span>
-          <span class="logo-subtext">ELECTRONICS</span>
-        </div>
-        <div class="nav-wrapper" id="nav-wrapper">
-          <nav>
-            <ul class="nav-list">
-              <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-              <li class="nav-item"><a href="#products" class="nav-link">Our Product</a></li>
-              <li class="nav-item"><a href="#category" class="nav-link">Category</a></li>
-              <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-              <li class="nav-item"><a href="#footer" class="nav-link">Contact us</a></li>
-            </ul>
-          </nav>
-          <!-- Auth Group: changes based on login state -->
-          <div class="auth-group" id="auth-group">
-            <!-- JS will populate this -->
-          </div>
-        </div>
-        <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-label="Toggle menu">
-          <span class="hamburger"></span>
-        </button>
-      </div>
-    </header>
 
-    <!-- HERO -->
-    <section id="home" class="hero-section">
-      <div class="container hero-wrapper">
-        <div class="hero-content">
-          <span class="hero-badge">FAVORITE BRANDS</span>
-          <h1>An exciting place <span class="blue-text">for the whole family</span> to shop.</h1>
-          <p class="hero-description">Empowering your digital world since 2024. Discover a curated collection of high-performance electronics and premium accessories. Find the latest tech here.</p>
-          <div class="hero-actions">
-            <a href="#products" class="btn-shop">SHOP NOW</a>
-          </div>
-        </div>
-        <div class="hero-image">
-          <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Premium electronics showcase">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M-MARKET Electronics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/css.css">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">
+        <a href="#home" class="logo-link">M-MARKET</a>
+        <span class="logo-subtext">ELECTRONICS</span>
+      </div>
+
+      <div class="nav-wrapper" id="nav-wrapper">
+        <nav>
+          <ul class="nav-list">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#products" class="nav-link">Our Products</a></li>
+            <li><a href="#category" class="nav-link">Category</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#footer" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
+        <!-- Auth group: JS populates this -->
+        <div class="auth-group" id="auth-group"></div>
+      </div>
+
+      <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-label="Toggle menu">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+  </header>
+  <!-- HERO -->
+  <section id="home" class="hero-section">
+    <div class="container hero-wrapper">
+      <div class="hero-content">
+        <span class="hero-badge">FAVORITE BRANDS</span>
+        <h1>An exciting place <span class="blue-text">for the whole family</span> to shop.</h1>
+        <p class="hero-description">Empowering your digital world since 2024. Discover a curated collection of
+          high-performance electronics and premium accessories.</p>
+        <div class="hero-actions">
+          <a href="#products" class="btn-shop">SHOP NOW</a>
         </div>
       </div>
-    </section>
-    <!-- FUTURE PRODUCTS -->
+      <div class="hero-image">
+        <img
+          src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+          alt="Premium electronics showcase">
+      </div>
+    </div>
+  </section>
+  <!-- FUTURE PRODUCTS -->
   <section class="fp-wrapper">
     <div class="containerr">
-        <div class="fp-header">
-            <h2 class="fp-title">Future Tech Arrivals</h2>
-            <p class="fp-subtitle">Coming soon to M-Market. Be the first to experience next-gen innovation.</p>
-        </div>
-        <div class="fp-scroll-container">
-            <div class="fp-card">
-                <div class="fp-img-box">
-                    <img src="https://hypersonic.club/wp-content/uploads/2025/03/G2.jpg" alt="Premium Speaker">
-                    <span class="fp-badge">Coming Soon</span>
-                </div>
-                <div class="fp-info">
-                    <h3>Sonic Pro G2</h3>
-                    <p>Immersive 360° Wireless Sound</p>
-                    <span class="fp-price-tag">Expected: $299</span>
-                </div>
-            </div>
-            <div class="fp-card">
-                <div class="fp-img-box">
-                    <img src="https://m.media-amazon.com/images/I/41LYa7ffSKL._AC_UF894,1000_QL80_.jpg" alt="4K Projector">
-                    <span class="fp-badge">Coming Soon</span>
-                </div>
-                <div class="fp-info">
-                    <h3>Lumina 4K Laser</h3>
-                    <p>Ultra Short Throw Home Cinema</p>
-                    <span class="fp-price-tag">Expected: $1,499</span>
-                </div>
-            </div>
-            <div class="fp-card">
-                <div class="fp-img-box">
-                    <img src="https://shopatmobile.com/wp-content/uploads/2024/08/15871-NZT-Aura-ANC-Headphones-Vintage-001.jpg" alt="ANC Headphones">
-                    <span class="fp-badge">Coming Soon</span>
-                </div>
-                <div class="fp-info">
-                    <h3>Aura Noise Cancel</h3>
-                    <p>Pure Silence, Pure Sound</p>
-                    <span class="fp-price-tag">Expected: $349</span>
-                </div>
-            </div>
-
-            <div class="fp-card">
-                <div class="fp-img-box">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTnQRwnb7kdfqmtm0LyTcOMcCzkX3yLo8YgQ&s" alt="Smart Hub">
-                    <span class="fp-badge">Coming Soon</span>
-                </div>
-                <div class="fp-info">
-                    <h3>Nexus Home Hub</h3>
-                    <p>The Heart of Your Smart Home</p>
-                    <span class="fp-price-tag">Expected: $199</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-    <!-- SEARCH -->
-    <section class="is-search-wrapper">
-      <div class="containerr">
-        <h2 class="is-search-title">FIND YOUR PRODUCT</h2>
-        <p style="text-align:center; color:#666; margin-bottom:20px;">Search by name, description, color, storage or category — instantly across our entire catalog.</p>
-        <div class="is-search-field-group">
-          <input type="text" id="is-query-input" placeholder="Search products...">
-          <button id="is-search-action">Search</button>
-        </div>
-        <div id="independent-search-results" class="strict-grid"></div>
+      <div class="fp-header">
+        <h2 class="fp-title">Future Tech Arrivals</h2>
+        <p class="fp-subtitle">Coming soon to M-Market. Be the first to experience next-gen innovation.</p>
       </div>
-    </section>
-
-    <!-- FEATURED PRODUCTS -->
-    <section id="products" class="m-market-featured">
-      <div class="containerr">
-        <div class="header-block">
-          <h2 class="display-title">Our Featured Electronics</h2>
-          <p class="display-subtitle">An exciting place for the whole family to shop. Explore our latest collection of high-performance gadgets and home electronics.</p>
-          <div class="blue-accent-line"></div>
-        </div>
-        <div id="product-list-grid" class="strict-grid"></div>
-      </div>
-    </section>
-
-    <!-- MODAL -->
-    <div id="modal-overlay"></div>
-    <div id="detail-modal"></div>
-
-    <!-- CATEGORY -->
-    <section id="category" class="is-cat-wrapper">
-      <div class="containerr">
-        <h2 class="is-cat-main-title">SHOP BY CATEGORY</h2>
-        <p class="is-cat-subtitle">Select a category to view specific products.</p>
-        <div class="is-cat-nav-bar">
-          <button class="is-cat-link" onclick="runCategoryFilter('phone')">Smartphones</button>
-          <button class="is-cat-link" onclick="runCategoryFilter('laptop')">Laptops</button>
-          <button class="is-cat-link" onclick="runCategoryFilter('ipad')">Tablets</button>
-          <button class="is-cat-link" onclick="runCategoryFilter('watch')">Watches</button>
-          <button class="is-cat-link is-clear" onclick="resetCategorySection()">Clear Results</button>
-        </div>
-        <div id="category-results-grid" class="strict-grid"></div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="au-main-wrapper">
-      <div class="containerr au-flex-container">
-        <div class="au-image-column">
-          <div class="au-img-frame">
-            <img src="https://images.unsplash.com/photo-1491933382434-500287f9b54b?auto=format&fit=crop&q=80&w=800" alt="M-Market Electronics Store" class="au-featured-img">
+      <div class="fp-scroll-container">
+        <div class="fp-card">
+          <div class="fp-img-box">
+            <img src="https://hypersonic.club/wp-content/uploads/2025/03/G2.jpg" alt="Premium Speaker">
+            <span class="fp-badge">Coming Soon</span>
+          </div>
+          <div class="fp-info">
+            <h3>Sonic Pro G2</h3>
+            <p>Immersive 360° Wireless Sound</p>
+            <span class="fp-price-tag">Expected: $299</span>
           </div>
         </div>
-        <div class="au-text-column">
-          <p class="au-sub-headline">WHO WE ARE</p>
-          <h2 class="au-main-headline">Your Trusted Partner in Modern Electronics</h2>
-          <p class="au-description">At M-Market Electronics, we don't just sell gadgets; we provide the tools for your digital success. We bridge the gap between complex technology and everyday convenience.</p>
-          <ul class="au-feature-list">
-            <li class="au-list-item"><span class="au-check">✔</span><p>Quality Assurance: Every device is 100% certified and tested.</p></li>
-            <li class="au-list-item"><span class="au-check">✔</span><p>Global Standards: We bring world-class innovation to your doorstep.</p></li>
-            <li class="au-list-item"><span class="au-check">✔</span><p>Expert Support: Our tech team is available 24/7 for your needs.</p></li>
-          </ul>
+        <div class="fp-card">
+          <div class="fp-img-box">
+            <img src="https://m.media-amazon.com/images/I/41LYa7ffSKL._AC_UF894,1000_QL80_.jpg" alt="4K Projector">
+            <span class="fp-badge">Coming Soon</span>
+          </div>
+          <div class="fp-info">
+            <h3>Lumina 4K Laser</h3>
+            <p>Ultra Short Throw Home Cinema</p>
+            <span class="fp-price-tag">Expected: $1,499</span>
+          </div>
+        </div>
+        <div class="fp-card">
+          <div class="fp-img-box">
+            <img src="https://shopatmobile.com/wp-content/uploads/2024/08/15871-NZT-Aura-ANC-Headphones-Vintage-001.jpg"
+              alt="ANC Headphones">
+            <span class="fp-badge">Coming Soon</span>
+          </div>
+          <div class="fp-info">
+            <h3>Aura Noise Cancel</h3>
+            <p>Pure Silence, Pure Sound</p>
+            <span class="fp-price-tag">Expected: $349</span>
+          </div>
+        </div>
+        <div class="fp-card">
+          <div class="fp-img-box">
+            <img src="https://i.ebayimg.com/images/g/IBsAAOSwRjVlCFlN/s-l1600.webp" alt="Nikon Camera">
+            <span class="fp-badge">Coming Soon</span>
+          </div>
+          <div class="fp-info">
+            <h3>Nikon Camera</h3>
+            <p>Professional DSLR Excellence</p>
+            <span class="fp-price-tag">Expected: $349</span>
+          </div>
+        </div>
+        <div class="fp-card">
+          <div class="fp-img-box">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTnQRwnb7kdfqmtm0LyTcOMcCzkX3yLo8YgQ&s"
+              alt="Smart Hub">
+            <span class="fp-badge">Coming Soon</span>
+          </div>
+          <div class="fp-info">
+            <h3>Nexus Home Hub</h3>
+            <p>The Heart of Your Smart Home</p>
+            <span class="fp-price-tag">Expected: $199</span>
+          </div>
         </div>
       </div>
-    </section>
-     <!-- FOOTER -->
-    <footer id="footer" class="sf-wrapper">
-      <div class="container sf-content">
-        <div class="sf-left">
-          <span class="sf-logo">M-MARKET</span>
-          <span class="sf-contact-info">Contact us: <a href="mailto:Mmarket@gmail.com" class="sf-email">Mmarket@gmail.com</a></span>
-        </div>
-        <div class="sf-right">
-          <span class="sf-copy">© 2026 All Rights Reserved</span>
-          <a href="#home" class="sf-top-link">Back to Top ↑</a>
+    </div>
+  </section>
+  <!-- SEARCH -->
+  <section class="is-search-wrapper">
+    <div class="containerr">
+      <h2 class="is-search-title">FIND YOUR PRODUCT</h2>
+      <p style="text-align:center; color:#666; margin-bottom:20px;">
+        Search by name, description, color, storage or category — instantly across our entire catalog.
+      </p>
+      <div class="is-search-field-group">
+        <input type="text" id="is-query-input" placeholder="Search products...">
+        <button id="is-search-action">Search</button>
+      </div>
+      <div id="independent-search-results" class="strict-grid"></div>
+    </div>
+  </section>
+  <!-- FEATURED PRODUCTS -->
+  <section id="products" class="m-market-featured">
+    <div class="containerr">
+      <div class="header-block">
+        <h2 class="display-title">Our Featured Electronics</h2>
+        <p class="display-subtitle">Explore our latest collection of high-performance gadgets and home electronics.</p>
+        <div class="blue-accent-line"></div>
+      </div>
+      <div id="product-list-grid" class="strict-grid"></div>
+    </div>
+  </section>
+
+  <!-- MODAL -->
+  <div id="modal-overlay"></div>
+  <!-- CATEGORY -->
+  <section id="category" class="is-cat-wrapper">
+    <div class="containerr">
+      <h2 class="is-cat-main-title">SHOP BY CATEGORY</h2>
+      <p class="is-cat-subtitle">Select a category to view specific products.</p>
+      <div class="is-cat-nav-bar">
+        <button class="is-cat-link" onclick="runCategoryFilter('phone')">Smartphones</button>
+        <button class="is-cat-link" onclick="runCategoryFilter('laptop')">Laptops</button>
+        <button class="is-cat-link" onclick="runCategoryFilter('ipad')">Tablets</button>
+        <button class="is-cat-link" onclick="runCategoryFilter('watch')">Watches</button>
+        <button class="is-cat-link is-clear" onclick="resetCategorySection()">Clear Results</button>
+      </div>
+      <div id="category-results-grid" class="strict-grid"></div>
+    </div>
+  </section>
+  <!-- ABOUT -->
+  <section id="about" class="au-main-wrapper">
+    <div class="containerr au-flex-container">
+      <div class="au-image-column">
+        <div class="au-img-frame">
+          <img src="https://images.unsplash.com/photo-1491933382434-500287f9b54b?auto=format&fit=crop&q=80&w=800"
+            alt="M-Market Electronics Store" class="au-featured-img">
         </div>
       </div>
-    </footer>
-    <script src="javaScript/script.js"></script>
+      <div class="au-text-column">
+        <p class="au-sub-headline">WHO WE ARE</p>
+        <h2 class="au-main-headline">Your Trusted Partner in Modern Electronics</h2>
+        <p class="au-description">At M-Market Electronics, we don't just sell gadgets; we provide the tools for your
+          digital success. We bridge the gap between complex technology and everyday convenience.</p>
+        <ul class="au-feature-list">
+          <li class="au-list-item"><span class="au-check">✔</span>
+            <p>Quality Assurance: Every device is 100% certified and tested.</p>
+          </li>
+          <li class="au-list-item"><span class="au-check">✔</span>
+            <p>Global Standards: We bring world-class innovation to your doorstep.</p>
+          </li>
+          <li class="au-list-item"><span class="au-check">✔</span>
+            <p>Expert Support: Our tech team is available 24/7 for your needs.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- FOOTER -->
+  <footer id="footer" class="sf-wrapper">
+    <div class="container sf-content">
+      <div class="sf-left">
+        <span class="sf-logo">M-MARKET</span>
+        <span class="sf-contact-info">Contact us:
+          <a href="mailto:Mmarket@gmail.com" class="sf-email">Mmarket@gmail.com</a>
+        </span>
+      </div>
+      <div class="sf-right">
+        <span class="sf-copy">© 2026 All Rights Reserved</span>
+        <a href="#home" class="sf-top-link">Back to Top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="javaScript/script.js"></script>
 </body>
+
 </html>

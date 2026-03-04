@@ -1,46 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M-Market | Register</title>
-    <link rel="stylesheet" href="css/registration.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M-Market | Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/registration.css">
 </head>
 <body>
 
-    <header class="site-header">
-        <div class="container">
-            <div class="brand">
-                <a href="index.html" class="logo-link">M-MARKET <span class="logo-subtext">ELECTRONICS</span></a>
-            </div>
-        </div>
-    </header>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">
+        <a href="index.html" class="logo-link">M-MARKET</a>
+        <span class="logo-subtext">ELECTRONICS</span>
+      </div>
+      <a href="index.html" class="back-home">← Back to Store</a>
+    </div>
+  </header>
+  <div class="page-wrapper">
+    <div class="brand-panel">
+      <div class="brand-panel-logo">M-MARKET</div>
+      <div class="brand-panel-sub">Electronics</div>
+      <h2 class="brand-panel-tagline">
+        Join our <span>growing</span> community of tech lovers
+      </h2>
+      <p class="brand-panel-desc">
+        Create your account to place orders, track deliveries, and get access to exclusive deals.
+      </p>
+      <div class="brand-panel-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
 
-    <main class="form-container">
-        <form id="registration-form" class="auth-form">
-            <h2>Create Account</h2>
-            <p class="form-subtitle">Join M-Market Electronics today</p>
+    <div class="form-panel">
+      <div class="form-inner">
 
-            <div class="form-group">
-                <label for="fullName">Full Name</label>
-                <input type="text" name="fullName" id="fullName" placeholder="Enter your full name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" name="email" id="email" placeholder="name@example.com" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="••••••••" required>
-            </div>
+        <p class="form-eyebrow">Get started</p>
+        <h1 class="form-title">Create Account</h1>
+        <p class="form-subtitle">Join M-Market Electronics today</p>
+        <div class="form-divider"></div>
 
-            <button type="submit" class="submit-btn">Sign Up</button>
-            
-            <p class="auth-footer">
-                Already have an account? <a href="login.html">Log In</a>
-            </p>
+        <form id="registration-form" action="#">
+
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <div class="input-wrap">
+              <span class="input-icon">👤</span>
+              <input
+                type="text"
+                name="fullName"
+                id="fullName"
+                placeholder="Enter your full name"
+                required
+                autocomplete="name"
+              >
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <div class="input-wrap">
+              <span class="input-icon">✉</span>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="name@example.com"
+                required
+                autocomplete="email"
+              >
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">🔒</span>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="••••••••"
+                required
+                autocomplete="new-password"
+              >
+            </div>
+          </div>
+          <button type="submit" class="submit-btn" id="register-btn">Sign Up</button>
+          <p class="auth-footer">
+            Already have an account? <a href="login.html">Log In</a>
+          </p>
         </form>
-    </main>
-    <script src="javaScript/registration.js"></script>
+      </div>
+    </div>
+
+  </div>
+  <script src="javaScript/registration.js"></script>
 </body>
 </html>
