@@ -24,7 +24,7 @@ async function handleRegister(event) {
   const data     = Object.fromEntries(formData.entries());
 
   try {
-    const response = await fetch('http://localhost:3000/user/register', {
+    const response = await fetch('https://m-market-2.onrender.com/user/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)

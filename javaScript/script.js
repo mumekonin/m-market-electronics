@@ -1,4 +1,4 @@
-const SERVER_URL = 'http://localhost:3000';
+const SERVER_URL = 'https://m-market-2.onrender.com/';
 function renderAuthGroup() {
   const authGroup = document.getElementById('auth-group');
   const token = localStorage.getItem('userToken');
@@ -44,12 +44,12 @@ function renderAuthGroup() {
 }
 
 
-    // HAMBURGER MENU
+// HAMBURGER MENU
 
 document.addEventListener('DOMContentLoaded', () => {
   renderAuthGroup();
 
-  const menuBtn   = document.getElementById('menu-btn');
+  const menuBtn = document.getElementById('menu-btn');
   const navWrapper = document.getElementById('nav-wrapper');
 
   const toggleMenu = () => {
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
-  // FEATURED PRODUCTS GRID
+// FEATURED PRODUCTS GRID
 async function loadMmarketElectronics() {
   const grid = document.getElementById('product-list-grid');
   if (!grid) return;
@@ -94,11 +94,11 @@ document.addEventListener('DOMContentLoaded', loadMmarketElectronics);
 //  4. PRODUCT DETAIL MODAL
 async function showProductDetails(targetId) {
   const detailBox = document.getElementById('detail-modal');
-  const overlay   = document.getElementById('modal-overlay');
+  const overlay = document.getElementById('modal-overlay');
 
   try {
     const response = await fetch(`${SERVER_URL}/products/get-product-detail/${targetId}`);
-    const product  = await response.json();
+    const product = await response.json();
     const cleanPath = product.imageUrl?.replace(/\\/g, '/');
 
     detailBox.innerHTML = `
@@ -129,7 +129,7 @@ async function showProductDetails(targetId) {
     `;
 
     detailBox.style.display = 'block';
-    overlay.style.display   = 'block';
+    overlay.style.display = 'block';
     document.body.style.overflow = 'hidden';
   } catch (e) {
     console.error('Detail Error:', e);
@@ -137,16 +137,16 @@ async function showProductDetails(targetId) {
 }
 
 function showOrderForm() {
-  document.getElementById('initial-order-step').style.display  = 'none';
+  document.getElementById('initial-order-step').style.display = 'none';
   document.getElementById('hidden-payment-methods').style.display = 'block';
 }
 
 async function buyNow(productId) {
-  const token     = localStorage.getItem('userToken');
+  const token = localStorage.getItem('userToken');
   const fileInput = document.getElementById('order-screenshot');
-  const qty       = document.getElementById('order-qty').value;
+  const qty = document.getElementById('order-qty').value;
 
-  if (!token)            return alert('Please login first!');
+  if (!token) return alert('Please login first!');
   if (!fileInput.files[0]) return alert('Screenshot required!');
 
   const formData = new FormData();
@@ -179,12 +179,12 @@ function closeModal() {
   document.body.style.overflow = 'auto';
 }
 
-  // SEARCH
+// SEARCH
 (function () {
   async function executeSearch() {
     const input = document.getElementById('is-query-input');
-    const grid  = document.getElementById('independent-search-results');
-    const key   = input.value.trim();
+    const grid = document.getElementById('independent-search-results');
+    const key = input.value.trim();
     if (!key) { grid.innerHTML = ''; return; }
 
     try {
@@ -213,7 +213,7 @@ function closeModal() {
 
   document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('is-query-input');
-    const btn   = document.getElementById('is-search-action');
+    const btn = document.getElementById('is-search-action');
 
     if (btn) btn.onclick = executeSearch;
     if (input) {

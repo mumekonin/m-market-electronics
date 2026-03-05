@@ -94,7 +94,7 @@ async function loadProducts() {
   document.getElementById('searchBarWrap').style.display = 'none';
 
   try {
-    const res = await fetch('http://localhost:3000/products/get-all-products', {
+    const res = await fetch('https://m-market-2.onrender.com/products/get-all-products', {
       headers: authHeaders()
     });
     const data = await res.json();
@@ -140,7 +140,7 @@ function renderProducts(products) {
     const stockClass = stock === 0 ? 'no-stock' : stock <= 5 ? 'low-stock' : 'in-stock';
     const stockDot = stock === 0 ? '✕' : stock <= 5 ? '⚠' : '✓';
     const imgSrc = p.imageUrl
-      ? `http://localhost:3000/${p.imageUrl.replace(/\\/g, '/')}`
+      ? `https://m-market-2.onrender.com/${p.imageUrl.replace(/\\/g, '/')}`
       : null;
 
     const imgCell = imgSrc
@@ -265,7 +265,7 @@ async function submitUpload() {
   setStatus('uploadStatus', 'loading', 'Uploading product…');
 
   try {
-    const res = await fetch('http://localhost:3000/products/upload', {
+    const res = await fetch('https://m-market-2.onrender.com/products/upload', {
       method: 'POST',
       headers: authHeaders(),
       body: formData
@@ -324,7 +324,7 @@ async function confirmDelete() {
   setStatus('deleteStatus', 'loading', 'Deleting product…');
 
   try {
-    const res = await fetch(`http://localhost:3000/products/delete/${id}`, {
+    const res = await fetch(`https://m-market-2.onrender.com/products/delete/${id}`, {
       method: 'DELETE',
       headers: authHeaders()
     });
@@ -421,7 +421,7 @@ async function submitUpdate() {
   setStatus('updateStatus', 'loading', 'Saving changes…');
 
   try {
-    const res = await fetch(`http://localhost:3000/products/update/${id}`, {
+    const res = await fetch(`https://m-market-2.onrender.com/products/update/${id}`, {
       method: 'PATCH',
       headers: authHeaders(),
       body: formData
@@ -465,7 +465,7 @@ async function loadOrders() {
   document.getElementById('ordersSearchWrap').style.display = 'none';
 
   try {
-    const res = await fetch('http://localhost:3000/orders/allOrders', {
+    const res = await fetch('https://m-market-2.onrender.com/orders/allOrders', {
       headers: authHeaders()
     });
     const data = await res.json();
@@ -610,7 +610,7 @@ async function submitOrderStatus() {
   setStatus('orderStatusMsg', 'loading', 'Updating order status…');
 
   try {
-    const res = await fetch(`http://localhost:3000/orders/${id}`, {
+    const res = await fetch(`https://m-market-2.onrender.com/orders/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
