@@ -1,4 +1,4 @@
-const SERVER_URL = 'https://m-market-2.onrender.com/';
+const SERVER_URL = 'https://m-market-2.onrender.com';
 function renderAuthGroup() {
   const authGroup = document.getElementById('auth-group');
   const token = localStorage.getItem('userToken');
