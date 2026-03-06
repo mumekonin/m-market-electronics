@@ -257,3 +257,12 @@ window.runCategoryFilter = async function (cat) {
 window.resetCategorySection = function () {
   document.getElementById('category-results-grid').innerHTML = '';
 };
+
+const displayImage = (productImage) => {
+    // If it's a Cloudinary link, use it directly
+    if (productImage.startsWith('http')) {
+        return productImage;
+    }
+    // If it's a local path, point it to your live Render URL
+    return `https://your-backend.onrender.com${productImage}`;
+};
